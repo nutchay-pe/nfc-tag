@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Luggage Tag</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .lang-toggle-btn {
+      position: fixed;
+      top: 12px; right: 12px;
+      z-index: 999;
+      background: rgba(255,255,255,0.9);
+      border: 1.5px solid #d1d5db;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      backdrop-filter: blur(6px);
+      transition: all 0.2s;
+    }
+    .lang-toggle-btn:hover { background: #f9fafb; transform: scale(1.05); }
+  </style>
+</head>
+<body class="theme-minimal">
+  <button id="langToggleBtn" class="lang-toggle-btn" onclick="toggleLang()">🇬🇧 EN</button>
+
+  <main class="container">
+    <section id="profileCard" class="card template-minimal hidden">
+      <div id="statusBadge" class="status"><span data-lang="loading">กำลังโหลดข้อมูล...</span></div>
+
+      <div class="profile">
+        <img id="profileImage" class="profile-image hidden" alt="profile" />
+        <div id="avatar" class="avatar">?</div>
+        <h1 id="ownerName" class="name">Loading...</h1>
+        <p id="taglineText" class="tagline"></p>
+      </div>
+
+
+      <div id="noticeBox" class="notice">
+        <span data-lang="pleaseWait">กรุณารอสักครู่...</span>
+      </div>
+
+      <div class="section">
+        <h2 data-lang="contactOwner" data-lang="contactOwner">ติดต่อเจ้าของ</h2>
+        <div class="action-list">
+          <a id="callBtn" class="action-btn btn-call" href="#" data-lang="callOwner" data-lang="callOwner">📞 โทรหาเจ้าของ</a>
+
+            
+                    <div id="socialCardList" class="link-card-list hidden">
+
+            <a id="lineCard" class="link-card-item hidden" href="#" target="_blank">
+              <div class="link-card-left">
+                <img src="image/Line-icon.PNG" alt="LINE" class="link-card-icon">
+                <div class="link-card-text">
+                  <div class="link-card-title">LINE</div>
+                  <div class="link-card-subtitle" data-lang="socialAccount">บัญชีโซเชียล</div>
+                </div>
+              </div>
+              <div class="link-card-arrow">→</div>
+            </a>              
+
+            <a id="whatsappCard" class="link-card-item hidden" href="#" target="_blank">
+              <div class="link-card-left">
+                <img src="image/WhatsApp-icon.PNG" alt="WhatsApp" class="link-card-icon">
+                <div class="link-card-text">
+                  <div class="link-card-title">WhatsApp</div>
+                  <div class="link-card-subtitle" data-lang="socialAccount">บัญชีโซเชียล</div>
+                </div>
+              </div>
+              <div class="link-card-arrow">→</div>
+            </a>
+
+            <a id="instagramCard" class="link-card-item hidden" href="#" target="_blank">
+              <div class="link-card-left">
+                <img src="image/IG-icon.PNG" alt="Instagram" class="link-card-icon">
+                <div class="link-card-text">
+                  <div class="link-card-title">Instagram</div>
+                  <div class="link-card-subtitle" data-lang="socialAccount">บัญชีโซเชียล</div>
+                </div>
+              </div>
+              <div class="link-card-arrow">→</div>
+            </a>
+
+            <a id="facebookCard" class="link-card-item hidden" href="#" target="_blank">
+              <div class="link-card-left">
+                <img src="image/Facebook-icon.PNG" alt="Facebook" class="link-card-icon">
+                <div class="link-card-text">
+                  <div class="link-card-title" data-lang="labelFacebook" data-lang="labelFacebook">เฟซบุ๊ก</div>
+                  <div class="link-card-subtitle" data-lang="socialAccount">บัญชีโซเชียล</div>
+                </div>
+              </div>
+              <div class="link-card-arrow">→</div>
+            </a>
+
+            <a id="xCard" class="link-card-item hidden" href="#" target="_blank">
+              <div class="link-card-left">
+                <img src="image/X-icon.PNG" alt="X" class="link-card-icon">
+                <div class="link-card-text">
+                  <div class="link-card-title">X</div>
+                  <div class="link-card-subtitle" data-lang="socialAccount">บัญชีโซเชียล</div>
+                </div>
+              </div>
+              <div class="link-card-arrow">→</div>
+            </a>
+
+            <a id="wechatCard" class="link-card-item hidden" href="#" target="_blank">
+              <div class="link-card-left">
+                <img src="image/WeChat-icon.PNG" alt="WeChat" class="link-card-icon">
+                <div class="link-card-text">
+                  <div class="link-card-title">WeChat</div>
+                  <div class="link-card-subtitle" data-lang="socialAccount">บัญชีโซเชียล</div>
+                </div>
+              </div>
+              <div class="link-card-arrow">→</div>
+            </a>
+
+            <a id="youtubeCard" class="link-card-item hidden" href="#" target="_blank">
+              <div class="link-card-left">
+                <img src="image/Youtube-icon.PNG" alt="YouTube" class="link-card-icon">
+                <div class="link-card-text">
+                  <div class="link-card-title">YouTube</div>
+                  <div class="link-card-subtitle" data-lang="youtubeSubtitle" data-lang="youtubeSubtitle">ช่องวิดีโอ</div>
+                </div>
+              </div>
+              <div class="link-card-arrow">→</div>
+            </a>
+
+            <a id="tiktokCard" class="link-card-item hidden" href="#" target="_blank">
+              <div class="link-card-left">
+                <img src="image/Tiktok-icon.PNG" alt="TikTok" class="link-card-icon">
+                <div class="link-card-text">
+                  <div class="link-card-title">TikTok</div>
+                  <div class="link-card-subtitle" data-lang="socialAccount">บัญชีโซเชียล</div>
+                </div>
+              </div>
+              <div class="link-card-arrow">→</div>
+            </a>
+          </div>
+                    
+        </div>
+
+           
+
+      </div
+      >
+
+      <div class="section">
+        <h2 data-lang="additionalInfo" data-lang="additionalInfo">ข้อมูลเพิ่มเติม</h2>
+        <div class="details">
+          <div class="detail-item" id="emailItem">
+             <span class="label" data-lang="emailLabel">อีเมล</span>
+             <span id="emailText">-</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="label" data-lang="messageLabel" data-lang="messageLabel">ข้อความเพิ่มเติม</span>
+            <span id="extraText">-</span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        Smart NFC Luggage Tag
+        <a id="editMiniBtn" class="edit-mini-btn hidden" href="#">⚙️</a>
+      </footer>
+      
+    </section>
+
+    <section>
+      <div id="hiddenModeView" class="hidden-mode-view hidden">
+        <div class="hidden-mode-card">
+          <div class="hidden-badge">
+            <span class="badge-icon">🔒</span>
+            <span data-lang="hiddenMode" data-lang="hiddenMode">ซ่อนข้อมูล</span>
+          </div>
+
+          <div class="hidden-mode-message-box image-only-box">
+            <img src="image/your-bag.PNG" alt="กระเป๋า" class="hidden-mode-image in-message-box" />
+          </div>
+          <div class="hidden-mode-footer">
+            <a id="editMiniBtn2" class="edit-mini-btn hidden" href="#">⚙️</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </main>
+
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="lang.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

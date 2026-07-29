@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-lang="regPageTitle">ลงทะเบียนข้อมูลลูกค้า</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+        .form-card {
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      }
+
+      .form-title {
+        margin: 0 0 8px;
+        font-size: 28px;
+      }
+
+      .form-subtitle {
+        margin: 0 0 20px;
+        color: #6b7280;
+        font-size: 14px;
+      }
+
+      .form-grid {
+        display: grid;
+        gap: 14px;
+        width: 100%;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        width: 100%;
+      }
+
+      .form-group label {
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #d1d5db;
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 15px;
+        outline: none;
+        background: #fff;
+      }
+
+      .form-group textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+
+    
+     
+
+      
+
+      .submit-btn {
+        width: 100%;
+        border: none;
+        border-radius: 14px;
+        padding: 14px 16px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+        background: #2563eb;
+        cursor: pointer;
+        margin-top: 8px;
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      .result-box {
+        margin-top: 18px;
+        padding: 14px;
+        border-radius: 14px;
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        line-height: 1.6;
+        word-break: break-word;
+        white-space: pre-line;
+      }
+
+      .success {
+        border-color: #bbf7d0;
+        background: #f0fdf4;
+        color: #166534;
+      }
+
+      .error {
+        border-color: #fecaca;
+        background: #fef2f2;
+        color: #991b1b;
+      }
+
+      .link-box {
+        margin-top: 18px;
+        padding: 14px;
+        border-radius: 14px;
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        display: none;
+      }
+
+      .link-item {
+        margin-bottom: 14px;
+      }
+
+      .link-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .link-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .link-row {
+        display: flex;
+        gap: 8px;
+        align-items: stretch;
+      }
+
+      .link-row input {
+        flex: 1;
+        min-width: 0;
+        width: 100%;
+        border: 1px solid #d1d5db;
+        border-radius: 10px;
+        padding: 10px 12px;
+        font-size: 14px;
+        box-sizing: border-box;
+      }
+
+      .copy-btn,
+      .go-btn {
+        border: none;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-weight: 700;
+        cursor: pointer;
+        background: #111827;
+        color: #fff;
+        white-space: nowrap;
+        flex: 0 0 auto;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 12px;
+          align-items: flex-start;
+        }
+
+        .form-card {
+          max-width: 100%;
+          padding: 18px;
+          border-radius: 18px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 10px;
+        }
+
+        .form-card {
+          padding: 16px;
+          border-radius: 16px;
+        }
+
+        .form-title {
+          font-size: 24px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+          font-size: 16px;
+        }
+
+        .link-row {
+          flex-direction: column;
+        }
+
+        .copy-btn,
+        .go-btn {
+          width: 100%;
+        }
+      }
+
+      /* ── CHANGE PASSWORD ── */
+      .change-pass-box {
+        border: 1px solid #d1d5db;
+        border-radius: 14px;
+        overflow: hidden;
+      }
+      .change-pass-header {
+        padding: 14px 16px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #f9fafb;
+        user-select: none;
+      }
+      .change-pass-header:hover { background: #f3f4f6; }
+      #changePassBody {
+        padding: 0 16px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .change-pass-hint {
+        font-size: 13px;
+        color: #6b7280;
+        margin: 10px 0 0;
+        line-height: 1.5;
+      }
+
+      /* ── CONSENT ── */
+      .consent-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 14px;
+        cursor: pointer;
+        line-height: 1.5;
+      }
+      .consent-label input[type="checkbox"] {
+        width: 18px; height: 18px;
+        margin-top: 2px; flex-shrink: 0;
+        accent-color: #2563eb;
+        cursor: pointer;
+      }
+      .consent-label a {
+        color: #2563eb;
+        text-decoration: underline;
+        font-weight: 600;
+      }
+
+      /* ── MODAL ── */
+      .modal-overlay {
+        display: none;
+        position: fixed; inset: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+      .modal-overlay.open { display: flex; }
+      .modal-box {
+        background: #fff;
+        border-radius: 20px;
+        padding: 24px;
+        max-width: 480px;
+        width: 100%;
+        max-height: 85vh;
+        overflow-y: auto;
+        position: relative;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      }
+      .modal-close {
+        position: absolute; top: 16px; right: 16px;
+        background: #f3f4f6; border: none;
+        border-radius: 50%; width: 32px; height: 32px;
+        font-size: 14px; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+      }
+      .modal-title {
+        font-size: 18px; font-weight: 700;
+        margin: 0 0 16px; padding-right: 32px;
+      }
+      .modal-body p { margin: 12px 0 6px; font-size: 14px; }
+      .modal-body ul {
+        margin: 0 0 8px 20px;
+        font-size: 14px; color: #374151; line-height: 1.7;
+      }
+      .modal-accept-btn {
+        width: 100%; margin-top: 20px;
+        background: #2563eb; color: #fff;
+        border: none; border-radius: 12px;
+        padding: 12px; font-size: 15px;
+        font-weight: 700; cursor: pointer;
+      }
+      .modal-accept-btn:hover { background: #1d4ed8; }
+
+      .display-title {
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .display-options {
+        display: grid;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .display-option {
+        display: grid !important;
+        grid-template-columns: 22px 1fr !important;
+        align-items: center !important;
+        column-gap: 12px !important;
+        width: 100% !important;
+        min-height: 56px;
+        padding: 14px 16px;
+        border: 1px solid #d1d5db;
+        border-radius: 12px;
+        box-sizing: border-box;
+        cursor: pointer;
+        background: #fff;
+        text-align: left !important;
+      }
+
+      .display-option input[type="radio"] {
+        margin: 0;
+        width: 18px;
+        height: 18px;
+        justify-self: start;
+        align-self: center;
+      }
+
+      .display-option-text {
+        display: block;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.4;
+        text-align: left !important;
+        white-space: normal;
+        word-break: break-word;
+      }
+
+
+  </style>
+  <style>
+    .lang-toggle-btn {
+      position: fixed;
+      top: 12px; right: 12px;
+      z-index: 999;
+      background: rgba(255,255,255,0.9);
+      border: 1.5px solid #d1d5db;
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      backdrop-filter: blur(6px);
+      transition: all 0.2s;
+    }
+    .lang-toggle-btn:hover { background: #f9fafb; transform: scale(1.05); }
+  </style>
+</head>
+<body>
+  <button id="langToggleBtn" class="lang-toggle-btn" onclick="toggleLang()">🇬🇧 EN</button>
+  <main class="container">
+    <section class="form-card">
+      <h1 class="form-title" data-lang="regLoginTitle">ลงชื่อบัญชีผู้ใช้งาน</h1>
+      <p class="form-subtitle" data-lang="regLoginSubtitle">กรอกข้อมูลเพื่อเข้าสู่ระบบแก้ไขข้อมูล</p>
+
+
+      <div id="accessCard" class="form-grid" style="margin-bottom:20px;">
+        <div class="form-group">
+          <label for="accessId" data-lang="labelId">รหัสลูกค้า (id)</label>
+          <input type="text" id="accessId" placeholder="กรอกรหัสลูกค้า" />
+        </div>
+
+        <div class="form-group">
+          <label for="accessCode" data-lang="labelUsername">ชื่อผู้ใช้ (Username)</label>
+          <input type="text" id="accessCode" placeholder="กรอกรหัสผ่าน" />
+        </div>
+
+        <div class="form-group">
+          <label for="accessCode2" data-lang="labelPassword">รหัสผ่าน (Password)</label>
+          <input type="password" id="accessCode2" placeholder="กรอกรหัสผ่าน" />
+        </div>
+
+        <button id="verifyBtn" class="submit-btn" type="button" data-lang="btnVerify">ยืนยันเพื่อแก้ไขข้อมูล</button>
+      </div>
+
+
+      <form id="profileForm" class="form-grid" style="display:none;">
+        <div class="form-group">
+          <label for="id" data-lang="labelId">รหัสลูกค้า (id)</label>
+          <input type="text" id="id" name="id" placeholder="ระบบจะสร้างให้อัตโนมัติ" required readonly />
+          <input type="hidden" id="editCodeHidden" name="editCode" />
+          <input type="hidden" id="password2Hidden" name="password2" />
+        </div>
+
+        <div class="form-group">
+          <label for="name" data-lang="labelName">ชื่อ</label>
+          <input type="text" id="name" name="name" placeholder="ชื่อเจ้าของผู้ใช้งาน" required />
+        </div>
+
+        <div class="form-group">
+          <label for="tagline" data-lang="labelTagline">ข้อความใต้ชื่อ</label>
+          <input type="text" id="tagline" name="tagline" placeholder="เช่น 💖💖💖 หรือ ข้อความสั้น ๆ" />
+        </div>
+
+
+        <div class="form-group">
+          <label for="phone" data-lang="labelPhone">เบอร์โทร</label>
+          <input type="text" id="phone" name="phone" placeholder="0812345678" required />
+        </div>
+
+        <div class="form-group">
+          <label for="lineId">Line ID</label>
+          <input type="text" id="lineId" name="lineId" placeholder="line id" />
+        </div>
+
+          <div class="form-group">
+            <label for="facebook">Facebook link</label>
+            <input type="text" id="facebook" name="facebook" placeholder="https://facebook.com/..." />
+          </div>
+
+          <div class="form-group">
+            <label for="instagram">Instagram link</label>
+            <input type="text" id="instagram" name="instagram" placeholder="https://instagram.com/..." />
+          </div>
+
+          <div class="form-group">
+            <label for="x">X link</label>
+            <input type="text" id="x" name="x" placeholder="https://x.com/..." />
+          </div>
+
+          <div class="form-group">
+            <label for="wechat">WeChat link</label>
+            <input type="text" id="wechat" name="wechat" placeholder="https://..." />
+          </div>
+
+          <div class="form-group">
+            <label for="whatsapp">WhatsApp link</label>
+            <input type="text" id="whatsapp" name="whatsapp" placeholder="https://wa.me/66..." />
+          </div>
+
+          <div class="form-group">
+            <label for="youtube">YouTube link</label>
+            <input type="text" id="youtube" name="youtube" placeholder="https://youtube.com/..." />
+          </div>
+
+          <div class="form-group">
+            <label for="tiktok">TikTok link</label>
+            <input type="text" id="tiktok" name="tiktok" placeholder="https://tiktok.com/..." />
+          </div>
+
+
+        <div class="form-group">
+          <label for="email" data-lang="labelEmail">อีเมล</label>
+          <input type="email" id="email" name="email" placeholder="name@email.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="message" data-lang="labelMessage">ข้อความ</label>
+          <textarea id="message" name="message" placeholder="ติดต่อเจ้าของได้เลย 💖"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="template">Color Mode</label>
+          <select id="template" name="template">
+            <option value="minimal">Normal</option>
+            <option value="travel">Light mode</option>
+            <option value="business">Dark mode</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="display-title" data-lang="labelDisplayMode">โหมดการแสดงผลหน้าโปรไฟล์</label>
+
+          <div class="display-options">
+            <label class="display-option">
+              <input type="radio" name="displayMode" value="show" checked />
+              <span class="display-option-text" data-lang="displayNormal">แสดงข้อมูลปกติ</span>
+            </label>
+
+            <label class="display-option">
+              <input type="radio" name="displayMode" value="hidden" />
+              <span class="display-option-text" data-lang="displayHidden">แสดงเฉพาะพื้นหลัง</span>
+            </label>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="imageFile" data-lang="labelUpload">อัปโหลดรูปภาพ</label>
+          <input type="file" id="imageFile" accept="image/*" />
+          <input type="hidden" id="imageUrl" name="imageUrl" />
+        </div>
+
+        <div class="form-group">
+          <label for="status" data-lang="labelStatus">สถานะ</label>
+          <select id="status" name="status">
+            <option value="normal">normal</option>
+            <option value="lost">lost</option>
+          </select>
+        </div>
+
+        <!-- CHANGE PASSWORD SECTION -->
+        <div class="change-pass-box">
+          <div class="change-pass-header" onclick="toggleChangePass()">
+            <span data-lang="changePassTitle">🔑 เปลี่ยนรหัสผ่าน</span>
+            <span id="changePassArrow">▼</span>
+          </div>
+          <div id="changePassBody" style="display:none">
+            <p class="change-pass-hint">
+              <span data-lang="changePassHint">กรอกเฉพาะเมื่อต้องการเปลี่ยนรหัส ถ้าไม่กรอกรหัสเดิมจะถูกใช้ต่อไป</span>
+            </p>
+            <div class="form-group" style="margin-top:10px">
+              <label data-lang="labelNewEditCode">ชื่อผู้ใช้ใหม่ (Username ใหม่)</label>
+              <input type="text" id="newEditCode" placeholder="ใส่รหัสใหม่" autocomplete="new-password" />
+            </div>
+            <div class="form-group">
+              <label data-lang="labelNewPassword">รหัสผ่านใหม่ (Password ใหม่)</label>
+              <input type="password" id="newPassword2" placeholder="ใส่รหัสผ่านใหม่" autocomplete="new-password" />
+            </div>
+            <div class="form-group">
+              <label data-lang="labelConfirmPassword">ยืนยันรหัสผ่านใหม่</label>
+              <input type="password" id="confirmPassword2" placeholder="ยืนยันรหัสผ่านใหม่" autocomplete="new-password" />
+            </div>
+            <div id="passChangeMsg" style="display:none;font-size:13px;padding:8px 12px;border-radius:8px;margin-top:4px"></div>
+          </div>
+        </div>
+
+        <!-- CONSENT CHECKBOX -->
+        <div class="form-group" id="consentGroup">
+          <label class="consent-label">
+            <input type="checkbox" id="consentCheck" onchange="toggleSubmitBtn()" />
+            <span>
+              <span data-lang="consentText">ฉันยินยอมให้เก็บข้อมูลส่วนตัว</span> &nbsp;
+              <a href="#" id="consentLink" onclick="openPrivacyModal(event)">
+                อ่านรายละเอียด
+              </a>
+            </span>
+          </label>
+        </div>
+
+        <button id="submitBtn" class="submit-btn" type="submit" disabled data-lang="btnSave">บันทึกข้อมูล</button>
+
+      </form>
+
+      <!-- PRIVACY MODAL -->
+      <div id="privacyModal" class="modal-overlay" onclick="closePrivacyModal(event)">
+        <div class="modal-box">
+          <button class="modal-close" onclick="closePrivacyModal()">✕</button>
+          <h2 class="modal-title"><span data-lang="privacyTitle">📋 นโยบายการเก็บข้อมูลส่วนบุคคล</span></h2>
+          <div class="modal-body">
+            <p><strong data-lang="privacySection1">เราเก็บข้อมูลอะไรบ้าง?</strong></p>
+            <ul>
+              <li data-lang="privacyItem1">ชื่อ-นามสกุล</li>
+              <li data-lang="privacyItem2">เบอร์โทรศัพท์</li>
+              <li data-lang="privacyItem3">Line ID / อีเมล</li>
+              <li data-lang="privacyItem4">ลิงก์โซเชียลมีเดีย (Facebook, Instagram, TikTok ฯลฯ)</li>
+              <li data-lang="privacyItem5">รูปภาพโปรไฟล์</li>
+            </ul>
+
+            <p><strong data-lang="privacySection2">นำข้อมูลไปใช้ทำอะไร?</strong></p>
+            <ul>
+              <li data-lang="privacyItem6">แสดงบนหน้าโปรไฟล์ NFC tag ของคุณเท่านั้น</li>
+              <li data-lang="privacyItem7">ให้ผู้ที่สแกน NFC tag สามารถติดต่อคุณได้</li>
+              <li data-lang="privacyItem8">ไม่นำข้อมูลไปขาย หรือแชร์กับบุคคลภายนอก</li>
+            </ul>
+
+            <p><strong data-lang="privacySection3">ข้อมูลเก็บไว้ที่ไหน?</strong></p>
+            <ul>
+              <li data-lang="privacyItem9">เก็บใน Google Sheets ของผู้ให้บริการ</li>
+              <li data-lang="privacyItem10">รูปภาพเก็บใน Google Drive</li>
+              <li data-lang="privacyItem11">มีการเข้ารหัสรหัสผ่านด้วย SHA-256</li>
+            </ul>
+
+            <p><strong data-lang="privacySection4">สิทธิ์ของคุณ</strong></p>
+            <ul>
+              <li data-lang="privacyItem12">แก้ไขข้อมูลได้ตลอดเวลา</li>
+              <li data-lang="privacyItem13">ขอลบข้อมูลได้โดยติดต่อผู้ให้บริการ</li>
+            </ul>
+
+            <p style="font-size:13px;color:#6b7280;margin-top:16px;" data-lang="privacyFooter">
+              หากมีคำถามเพิ่มเติม กรุณาติดต่อผู้ให้บริการ NFC tag ของคุณ
+            </p>
+          </div>
+          <button class="modal-accept-btn" onclick="acceptConsent()" data-lang="btnAccept">
+            ✅ ยอมรับและปิด
+          </button>
+        </div>
+      </div>
+
+      <div id="resultBox" class="result-box" style="display:none;"></div>
+
+      <div id="linkBox" class="link-box">
+        <div class="link-item">
+          <span class="link-label" data-lang="profileLink">ลิงก์หน้าโปรไฟล์</span>
+          <div class="link-row">
+            <input id="profileLink" type="text" readonly />
+            <button class="copy-btn" type="button" data-copy-target="profileLink">📃COPY</button>
+            <button class="copy-btn go-btn" type="button" data-go-target="profileLink">🚀GO</button>
+          </div>
+        </div>
+
+        
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function toggleChangePass() {
+      const body = document.getElementById("changePassBody");
+      const arrow = document.getElementById("changePassArrow");
+      const isOpen = body.style.display !== "none";
+      body.style.display = isOpen ? "none" : "flex";
+      arrow.textContent = isOpen ? "▼" : "▲";
+    }
+
+    function validateNewPassword() {
+      const newEditCode = document.getElementById("newEditCode").value.trim();
+      const newPassword2 = document.getElementById("newPassword2").value.trim();
+      const confirm = document.getElementById("confirmPassword2").value.trim();
+      const msg = document.getElementById("passChangeMsg");
+
+      // ถ้าไม่ได้กรอกเลย = ไม่เปลี่ยน ผ่านได้
+      if (!newEditCode && !newPassword2 && !confirm) return true;
+
+      // กรอกบางช่องแต่ไม่ครบ
+      if (!newEditCode || !newPassword2 || !confirm) {
+        msg.style.display = "block";
+        msg.style.background = "#fef2f2";
+        msg.style.color = "#991b1b";
+        msg.textContent = "❌ กรุณากรอกรหัสใหม่ให้ครบทุกช่อง";
+        return false;
+      }
+
+      if (newEditCode.length < 4 || newPassword2.length < 4) {
+        msg.style.display = "block";
+        msg.style.background = "#fef2f2";
+        msg.style.color = "#991b1b";
+        msg.textContent = "❌ รหัสต้องมีอย่างน้อย 4 ตัวอักษร";
+        return false;
+      }
+
+      if (newPassword2 !== confirm) {
+        msg.style.display = "block";
+        msg.style.background = "#fef2f2";
+        msg.style.color = "#991b1b";
+        msg.textContent = "❌ รหัสผ่านใหม่ไม่ตรงกัน";
+        return false;
+      }
+
+      msg.style.display = "block";
+      msg.style.background = "#f0fdf4";
+      msg.style.color = "#166534";
+      msg.textContent = "✅ รหัสใหม่พร้อมบันทึก";
+      return true;
+    }
+
+    // เพิ่ม event listener เพื่อ validate realtime
+    document.addEventListener("DOMContentLoaded", () => {
+      ["newEditCode","newPassword2","confirmPassword2"].forEach(id => {
+        document.getElementById(id).addEventListener("input", validateNewPassword);
+      });
+    });
+
+    function toggleSubmitBtn() {
+      const checked = document.getElementById("consentCheck").checked;
+      document.getElementById("submitBtn").disabled = !checked;
+    }
+
+    function openPrivacyModal(e) {
+      if (e) e.preventDefault();
+      document.getElementById("privacyModal").classList.add("open");
+    }
+
+    function closePrivacyModal(e) {
+      if (e && e.target !== document.getElementById("privacyModal")) return;
+      document.getElementById("privacyModal").classList.remove("open");
+    }
+
+    function acceptConsent() {
+      document.getElementById("consentCheck").checked = true;
+      toggleSubmitBtn();
+      document.getElementById("privacyModal").classList.remove("open");
+    }
+  </script>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="lang.js"></script>
+  <script src="register.js"></script>
+</body>
+</html>
