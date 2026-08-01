@@ -24,7 +24,7 @@ const LANG = {
     labelMessage: "ข้อความ",
     labelDisplayMode: "โหมดการแสดงผลหน้าโปรไฟล์",
     displayNormal: "แสดงข้อมูลปกติ",
-    displayHidden: "แสดงเฉพาะพื้นหลัง",
+    displayHidden: "ไม่ต้องการให้แสดงข้อมูลส่วนตัว",
     labelUpload: "อัปโหลดรูปภาพ",
     profileLink: "ลิงก์หน้าโปรไฟล์",
     loadSuccess: "โหลดข้อมูลสำเร็จ พร้อมแก้ไขได้เลย รหัสลูกค้า:",
