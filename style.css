@@ -11,6 +11,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 .container {
@@ -1040,32 +1041,33 @@ body.theme-business {
 /* Social link cards: 2 per row, ">" arrow, icon in a neutral chip */
 .link-card-list {
   grid-template-columns: 1fr 1fr;
+  min-width: 0;
+  gap: 8px;
 }
 
 .link-card-item {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
-  padding: 12px;
+  gap: 8px;
+  padding: 10px;
+  min-width: 0;
 }
 
 .link-card-title {
   flex: 1;
   min-width: 0;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 700;
-  line-height: 1.2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.25;
+  white-space: normal;
 }
 
 .link-card-icon-wrap {
   flex: 0 0 auto;
-  width: 36px;
-  height: 36px;
-  border-radius: 11px;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1077,13 +1079,14 @@ body.theme-business {
 }
 
 .link-card-icon-wrap .link-card-icon {
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   border-radius: 0;
 }
 
 .link-card-arrow {
-  font-size: 16px;
+  font-size: 13px;
+  flex: 0 0 auto;
 }
 
 .link-card-item.span-full {
