@@ -1085,3 +1085,7 @@ body.theme-business {
 .link-card-arrow {
   font-size: 16px;
 }
+
+.link-card-item.span-full {
+  grid-column: 1 / -1;
+}

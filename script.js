@@ -245,7 +245,15 @@ function renderProfile(data) {
       socialCardList.style.display = "none";
       socialCardList.classList.add("hidden");
     }
-    
+
+    const visibleCards = Array.from(socialCardList.querySelectorAll(".link-card-item")).filter(
+      (card) => !card.classList.contains("hidden")
+    );
+    visibleCards.forEach((card) => card.classList.remove("span-full"));
+    if (visibleCards.length % 2 === 1) {
+      visibleCards[visibleCards.length - 1].classList.add("span-full");
+    }
+
 
 
   if (isNotEmpty(data.imageUrl)) {
