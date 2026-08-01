@@ -168,30 +168,80 @@ body.theme-minimal {
 }
 
 .template-minimal {
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(6px);
+  font-family: 'Sarabun', Arial, sans-serif;
+  background: rgba(255, 243, 238, 0.94);
+  box-shadow: 0 12px 34px rgba(232, 93, 63, 0.14);
 }
 
 .template-minimal .status {
-  background: rgba(229, 244, 255, 0.95);
-  color: #0b6bcb;
+  background: #fff;
+  color: #e85d3f;
+  box-shadow: 0 2px 8px rgba(232, 93, 63, 0.18);
+}
+
+.template-minimal .status.lost {
+  color: #c0392b;
+  box-shadow: 0 2px 8px rgba(192, 57, 43, 0.25);
+}
+
+.template-minimal .status:not(.lost)::before {
+  content: "🌸 ";
+}
+
+.template-minimal .name {
+  font-family: 'Kanit', Arial, sans-serif;
+  color: #7c2d12;
 }
 
 .template-minimal .avatar {
-  background: linear-gradient(135deg, #3b82f6, #10b981);
+  background: linear-gradient(150deg, #fbbf7a, #fb7185);
+  box-shadow: 0 10px 26px rgba(251, 113, 133, 0.35);
 }
 
 .template-minimal .subtitle,
 .template-minimal .label,
 .template-minimal .footer {
-  color: #6b7280;
+  color: #b45f4d;
 }
 
 .template-minimal .notice,
 .template-minimal .detail-item {
-  background: rgba(248, 250, 252, 0.9);
-  border: 1px solid #e5e7eb;
+  background: #fff1ec;
+  color: #c2410c;
+  border: none;
+}
+
+.template-minimal .btn-call {
+  background: linear-gradient(135deg, #fb923c, #fb7185);
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(251, 113, 133, 0.35);
+  font-family: 'Kanit', Arial, sans-serif;
+}
+
+.template-minimal .link-card-item {
+  background: #fef4f0;
+  border: none;
+}
+
+.template-minimal .link-card-title {
+  font-family: 'Kanit', Arial, sans-serif;
+  color: #7c2d12;
+}
+
+.template-minimal .link-card-subtitle {
+  color: #b45f4d;
+}
+
+.template-minimal .link-card-arrow {
+  color: #e8735c;
+}
+
+.template-minimal .tagline {
+  color: #b45f4d;
+}
+
+.template-minimal .edit-mini-btn {
+  color: #e8735c;
 }
 
 /* Travel */
