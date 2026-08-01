@@ -45,6 +45,10 @@ function getIdFromUrl() {
   return params.get("id");
 }
 
+function getBaseUrl() {
+  return window.location.origin + window.location.pathname.replace(/[^/]*$/, "");
+}
+
 function generateId(length = 6) {
   const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
   let result = "";
@@ -273,7 +277,7 @@ profileForm.addEventListener("submit", async (event) => {
 
 
 function showLinks(id) {
-  const profileUrl = `${window.location.origin}/index.html?id=${encodeURIComponent(id)}`;
+  const profileUrl = `${getBaseUrl()}index.html?id=${encodeURIComponent(id)}`;
   profileLinkInput.value = profileUrl;
   linkBox.style.display = "block";
 }

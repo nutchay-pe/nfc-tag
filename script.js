@@ -29,6 +29,10 @@ function getIdFromUrl() {
   return params.get("id");
 }
 
+function getBaseUrl() {
+  return window.location.origin + window.location.pathname.replace(/[^/]*$/, "");
+}
+
 function isNotEmpty(value) {
   return value !== null && value !== undefined && String(value).trim() !== "";
 }
@@ -116,7 +120,7 @@ function applyDisplayMode(data) {
     // แสดงปุ่ม edit ใน hidden mode ด้วย
     const hiddenId = getIdFromUrl();
     if (hiddenId && editMiniBtn2) {
-      editMiniBtn2.href = `${window.location.origin}/register.html?id=${encodeURIComponent(hiddenId)}`;
+      editMiniBtn2.href = `${getBaseUrl()}register.html?id=${encodeURIComponent(hiddenId)}`;
       editMiniBtn2.classList.remove("hidden");
     }
     return false;
@@ -264,7 +268,7 @@ function renderProfile(data) {
 
   const currentId = getIdFromUrl();
   if (currentId && editMiniBtn) {
-    const editUrl = `${window.location.origin}/register.html?id=${encodeURIComponent(currentId)}`;
+    const editUrl = `${getBaseUrl()}register.html?id=${encodeURIComponent(currentId)}`;
     editMiniBtn.href = editUrl;
     editMiniBtn.classList.remove("hidden");
     if (editMiniBtn2) {
