@@ -89,21 +89,14 @@ body {
 .notice {
   border-radius: 18px;
   padding: 16px;
-  margin: 20px 0;
   line-height: 1.6;
   font-size: 15px;
 }
 
-.section {
+.contact-box {
   margin-top: 20px;
-}
-
-.section h2 {
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-
-.action-list {
+  border-radius: 26px;
+  padding: 20px 20px 16px;
   display: grid;
   gap: 12px;
 }
@@ -132,17 +125,21 @@ body {
   background: #06c755;
 }
 
-.details {
-  display: grid;
-  gap: 10px;
-}
-
-.detail-item {
+.more-info {
   border-radius: 14px;
   padding: 12px 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.more-info b {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.more-info-line {
+  margin-top: 2px;
 }
 
 .label {
@@ -204,11 +201,24 @@ body.theme-minimal {
   color: #b45f4d;
 }
 
-.template-minimal .notice,
-.template-minimal .detail-item {
+.template-minimal .contact-box {
+  background: #fff;
+  box-shadow: 0 12px 34px rgba(232, 93, 63, 0.14);
+}
+
+.template-minimal .notice {
   background: #fff1ec;
   color: #c2410c;
   border: none;
+}
+
+.template-minimal .more-info {
+  color: #b45f4d;
+  border-top: 1px solid rgba(232, 93, 63, 0.15);
+}
+
+.template-minimal .more-info b {
+  color: #7c2d12;
 }
 
 .template-minimal .btn-call {
@@ -275,10 +285,25 @@ body.theme-travel {
   color: #92400e;
 }
 
-.template-travel .notice,
-.template-travel .detail-item {
-  background: rgba(255, 251, 235, 0.88);
-  border: 1px solid #fde68a;
+.template-travel .contact-box {
+  background: #fdf6e8;
+  border: 2px dashed #c78a3d;
+  box-shadow: 0 10px 26px rgba(90, 52, 10, 0.12);
+}
+
+.template-travel .notice {
+  background: #fbe8c8;
+  color: #7c3a0d;
+  border: 1px solid #e8b972;
+}
+
+.template-travel .more-info {
+  color: #8a5a34;
+  border-top: 1px solid rgba(146, 64, 13, 0.2);
+}
+
+.template-travel .more-info b {
+  color: #5a3418;
 }
 
 /* Business */
@@ -312,14 +337,29 @@ body.theme-business {
   color: #cbd5e1;
 }
 
-.template-business .notice,
-.template-business .detail-item {
-  background: rgba(30, 41, 59, 0.88);
-  border: 1px solid #334155;
+.template-business .contact-box {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(147, 197, 253, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.template-business .notice {
+  background: rgba(56, 189, 248, 0.08);
+  color: #bae6fd;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.template-business .more-info {
+  color: #94a3b8;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.template-business .more-info b {
+  color: #e2e8f0;
 }
 
 .template-business .name,
-.template-business .section h2,
 .template-business #phoneText,
 .template-business #extraText {
   color: #f8fafc;
@@ -435,8 +475,8 @@ body.theme-business {
     font-size: 15px;
   }
 
-  .detail-item {
-    padding: 11px 12px;
+  .contact-box {
+    padding: 16px 16px 12px;
   }
 
   .footer {
@@ -489,7 +529,7 @@ body.theme-business {
 #messageText,
 #phoneText,
 #emailText,
-.detail-item span {
+.more-info-line {
   overflow-wrap: anywhere;
 }
 
@@ -626,11 +666,6 @@ body.theme-business {
   line-height: 1;
   flex: 0 0 auto;
 }
-.template-minimal .link-card-item {
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid #e5e7eb;
-}
-
 .template-minimal .link-card-title {
   color: #1f2937;
 }
@@ -730,11 +765,6 @@ body.theme-business {
   flex: 0 0 auto;
 }
 
-.template-minimal .link-card-item {
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid #e5e7eb;
-}
-
 .template-minimal .link-card-title {
   color: #1f2937;
 }
@@ -832,11 +862,6 @@ body.theme-business {
   font-size: 24px;
   line-height: 1;
   flex: 0 0 auto;
-}
-
-.template-minimal .link-card-item {
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid #e5e7eb;
 }
 
 .template-minimal .link-card-title {
@@ -988,4 +1013,42 @@ body.theme-business {
     width: 220px;
     max-width: 100%;
   }
+}
+
+/* Wanderer/Executive link list: divider rows instead of boxed cards */
+.template-travel .link-card-list,
+.template-business .link-card-list {
+  gap: 0;
+  margin-top: 4px;
+}
+
+.template-travel .link-card-item,
+.template-business .link-card-item {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 12px 4px;
+}
+
+.template-travel .link-card-item {
+  border-bottom: 1px solid rgba(146, 64, 13, 0.15);
+}
+
+.template-business .link-card-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.template-travel .link-card-item:last-child,
+.template-business .link-card-item:last-child {
+  border-bottom: none;
+}
+
+.template-travel .btn-call {
+  background: #92400e;
+  color: #fff8ec;
+}
+
+.template-business .btn-call {
+  background: linear-gradient(135deg, #0ea5e9, #0369a1);
+  box-shadow: 0 8px 22px rgba(14, 165, 233, 0.35);
 }
